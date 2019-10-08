@@ -12,7 +12,6 @@ class WorkplaceChannel
     /** @var ClientInterface Http client. */
     protected $httpClient;
 
-
     public function __construct(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
@@ -28,7 +27,7 @@ class WorkplaceChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$to = $notifiable->routeNotificationFor('workplace', $notification)) {
+        if (! $to = $notifiable->routeNotificationFor('workplace', $notification)) {
             throw CouldNotSendNotification::endpointNotProvided();
         }
 
@@ -36,7 +35,7 @@ class WorkplaceChannel
 
         $body = [
             'message' => $message->getContent(),
-            'formatting' => ($message->isMarkdown() ? 'MARKDOWN' : null)
+            'formatting' => ($message->isMarkdown() ? 'MARKDOWN' : null),
         ];
 
         try {

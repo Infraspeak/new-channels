@@ -20,6 +20,7 @@ class CouldNotSendNotification extends \Exception
         if ($result = json_decode($exception->getResponse()->getBody())) {
             $description = $result->description ?: $description;
         }
+
         return new static("Workplace responded with an error `{$statusCode} - {$description}`");
     }
 
@@ -34,12 +35,12 @@ class CouldNotSendNotification extends \Exception
     }
 
     /**
-    * Thrown when we're unable to communicate with Workplace.
-    *
-    * @return static
-    */
+     * Thrown when we're unable to communicate with Workplace.
+     *
+     * @return static
+     */
     public static function couldNotCommunicateWithWorkplace($message)
-   {
-       return new static("The communication with Workplace failed. `{$message}`");
-   }
+    {
+        return new static("The communication with Workplace failed. `{$message}`");
+    }
 }

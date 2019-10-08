@@ -2,18 +2,18 @@
 
 namespace NotificationChannels\Workplace\Test;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Notifications\Notification;
 use Mockery;
-use NotificationChannels\Workplace\Exceptions\CouldNotSendNotification;
-use NotificationChannels\Workplace\WorkplaceChannel;
-use NotificationChannels\Workplace\WorkplaceClient;
-use NotificationChannels\Workplace\WorkplaceMessage;
+use GuzzleHttp\Client;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Workplace\WorkplaceClient;
+use NotificationChannels\Workplace\WorkplaceChannel;
+use NotificationChannels\Workplace\WorkplaceMessage;
+use NotificationChannels\Workplace\Exceptions\CouldNotSendNotification;
 
 class WorkplaceChannelTest extends TestCase
 {
@@ -26,7 +26,7 @@ class WorkplaceChannelTest extends TestCase
     protected $httpHistory = [];
     protected $mockHandler;
 
-   public function setUp()
+    public function setUp()
     {
         parent::setUp();
         //$this->workplace = Mockery::mock(WorkplaceClient::class);
@@ -60,7 +60,7 @@ class WorkplaceChannelTest extends TestCase
         $this->assertSame(
             [
                 'message' => 'Laravel Notification Channels are awesome!',
-                'formatting' => 'MARKDOWN'
+                'formatting' => 'MARKDOWN',
             ],
             $body
         );
@@ -72,7 +72,6 @@ class WorkplaceChannelTest extends TestCase
         $this->setExpectedException(CouldNotSendNotification::class);
         $this->channel->send(new TestNotifiableNoRouteNotificationDefined(), new TestNotification());
     }
-
 }
 
 class TestNotifiable
@@ -99,6 +98,6 @@ class TestNotification extends Notification
 {
     public function toWorkplace($notifiable)
     {
-        return (new WorkplaceMessage('Laravel Notification Channels are awesome!'));
+        return new WorkplaceMessage('Laravel Notification Channels are awesome!');
     }
 }

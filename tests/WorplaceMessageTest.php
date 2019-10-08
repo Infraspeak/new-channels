@@ -2,10 +2,10 @@
 
 namespace NotificationChannels\Workplace\Test;
 
-use NotificationChannels\Workplace\WorkplaceMessage;
 use PHPUnit\Framework\TestCase;
+use NotificationChannels\Workplace\WorkplaceMessage;
 
-class WorkplaceMessageTest extends TestCase
+class WorplaceMessageTest extends TestCase
 {
     /** @test */
     public function it_accepts_content_when_constructed()

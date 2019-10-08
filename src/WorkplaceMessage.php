@@ -2,14 +2,12 @@
 
 namespace NotificationChannels\Workplace;
 
-use Illuminate\Support\Arr;
-
 class WorkplaceMessage
 {
     /** @var string The message content */
     protected $content;
 
-    /** @var boolean Flag content as markdown */
+    /** @var bool Flag content as markdown */
     protected $markdown = true;
 
     /**
@@ -30,6 +28,7 @@ class WorkplaceMessage
     public function content($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -40,18 +39,20 @@ class WorkplaceMessage
 
     public function isPlainText()
     {
-        return !$this->markdown;
+        return ! $this->markdown;
     }
 
     public function asMarkdown()
     {
         $this->markdown = true;
+
         return $this;
     }
 
     public function asPlainText()
     {
         $this->markdown = false;
+
         return $this;
     }
 }
